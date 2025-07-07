@@ -1,0 +1,130 @@
+/* styles/BlogPost.module.css */
+
+.blog-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: #007bff;
+  z-index: 1000;
+  transition: width 0.1s ease-out;
+}
+
+.blog-container {
+  max-width: 820px;
+  margin: 4rem auto;
+  padding: 0 20px;
+}
+
+.blog-post {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.blog-header {
+  padding: 2rem 2.5rem 1.5rem;
+}
+
+.blog-breadcrumb {
+  font-size: 0.9rem;
+  color: #586069;
+  margin-bottom: 1rem;
+}
+
+.blog-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  color: #586069;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.blog-featured-image-wrapper {
+  margin-top: 2rem;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.blog-content {
+  padding: 1.5rem 2.5rem 2rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #24292e;
+}
+
+.blog-content h2,
+.blog-content h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.5rem;
+}
+
+.blog-content a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+}
+
+.blog-content p,
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1.5rem;
+}
+
+.blog-footer {
+  padding: 2rem 2.5rem;
+}
+
+.blog-tags {
+  margin-bottom: 2rem;
+}
+
+.blog-tag {
+  display: inline-block;
+  background-color: #f1f8ff;
+  color: #0366d6;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  margin: 0 0.5rem 0.5rem 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.blog-author-box {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eaecef;
+}
+
+.blog-author-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.blog-author-box h4 {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+}
+
+.blog-author-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #586069;
+}

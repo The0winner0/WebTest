@@ -1,0 +1,80 @@
+
+/*--------------------------------------------------------------
+6. Business Verticals
+--------------------------------------------------------------*/
+.business-verticals {
+  
+  padding: 1rem 1rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
+  background: radial-gradient(
+    circle at center,       /* shape & position */
+    rgb(0, 38, 67) 0%,             /* center color (at 0%) */
+    rgb(0, 36, 63) 40%,            /* mid-point */
+    rgb(0, 34, 60) 100%            /* edge color (at 100%) */
+  );
+  max-width: 1265px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.verticals-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+  padding: 0rem 1rem;
+  margin-top: 0rem;
+}
+
+.vertical-card {
+  flex: 1 1 180px;
+  max-width: 280px;
+  /* background: #fff; */
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  padding: 1rem;
+}
+
+.vertical-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 0.5rem 0 0.25rem;
+  color: #fff;
+  padding: 1rem;
+}
+
+.vertical-desc {
+  font-size: 1rem;
+  color: rgb(152, 169, 181);
+  margin: 0;
+  /* padding: 1rem; */
+}
+
+/* Icon wrapper stays square via relative sizing */
+.bdt-ep-advanced-icon-box-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background-color: rgb(0, 198, 221);
+  border-radius: 50%;
+}
+
+.e-font-icon-svg {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 0.25rem;
+  
+}
+
+/* Alternate icon box */
+.bdt-ep-advanced-icon-box-2 {
+  background-color: rgb(190, 235, 255);
+}

@@ -1,0 +1,220 @@
+:root {
+  --rtlv-max-width: 1200px;
+  --rtlv-gap: 1.5rem;
+  --rtlv-padding: 2rem;
+  --rtlv-color-headline: #101828;
+  --rtlv-color-text: rgba(16, 24, 40, 0.7);
+  --rtlv-font-sans: "DM Sans", sans-serif;
+}
+
+.rtlv {
+  /* background-color: #F7F9FD; */
+  padding-block: var(--rtlv-padding);
+  display: flex;
+  padding: 2rem 0;
+  justify-content: center;
+}
+
+.rtlv__inner {
+  width: 95%;
+  max-width: var(--rtlv-max-width);
+  padding-inline: var(--rtlv-padding);
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rtlv-gap);
+  /* align-items: stretch; */
+}
+
+/* HEADER (Left Section) */
+.rtlv__header {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  box-sizing: border-box;
+  background-color: #00008B;
+  border-radius: 32px;
+  padding: 3rem;
+  animation: fadeInUp 1s ease-out both;
+  overflow: hidden;
+}
+
+.rtlv__header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(https://atollsolutions.com/wp-content/uploads/2024/01/Sa36.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: auto;
+  mask-image: radial-gradient(circle at center, transparent 30%, black 100%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 30%, black 100%);
+  pointer-events: none;
+}
+
+.rtlv__features {
+  flex: 1;
+  min-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--rtlv-gap);
+}
+
+.rtlv__features-first-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rtlv-gap);
+}
+
+.rtlv__feature-card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: var(--rtlv-gap);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  animation: fadeInUp 1s ease-out both;
+  box-sizing: border-box;
+}
+
+.rtlv__feature-card-first-row {
+  flex: 1;
+  min-width: 200px;
+}
+
+.rtlv__feature-card-second-row {
+  flex: 1 1 100%;
+}
+
+
+.rtlv__icon {
+  display: inline-block;
+  font-size: 2rem;
+  color: var(--rtlv-color-headline);
+  margin-bottom: var(--rtlv-gap);
+}
+
+.rtlv__heading {
+  width: 100%;
+  font-family: var(--rtlv-font-sans);
+  font-weight: 500;
+  font-size: 2.8rem;
+  color: white;
+  line-height: 1.5;
+  animation: fadeInUp 1s ease-out both;
+  animation-delay: 0.2s;
+  /* margin-top: 25px; */
+  margin-bottom: 25px;
+}
+
+.rtlv__feature-title {
+  font-family: var(--rtlv-font-sans);
+  font-weight: 100;
+  max-width: 50%;
+  font-size: 1.25rem;
+  color: var(--rtlv-color-headline);
+  margin-bottom: 2.0rem;
+  margin-top: 0;
+}
+
+.rtlv__feature-text {
+  font-family: var(--rtlv-font-sans);
+  font-weight: 200;
+  line-height: 1.8;
+  font-size: 0.95rem;
+  padding-bottom: 2rem;
+  color: var(--rtlv-color-text);
+  margin: 0;
+}
+
+.rtlv__feature-card-1,
+.rtlv__feature-card-2,
+.rtlv__feature-card-3 {
+  background-color: #F4F6FA;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 2.5rem 1.5rem;
+}
+
+.rtlv__feature-card-1 {
+  background-image: url(https://atollsolutions.com/wp-content/uploads/2024/01/Profit.png);
+}
+
+.rtlv__feature-card-2 {
+  background-image: url(https://atollsolutions.com/wp-content/uploads/2024/01/Effeciency.png);
+}
+
+.rtlv__feature-card-3 {
+  background-image: url(https://atollsolutions.com/wp-content/uploads/2024/01/Secure.png);
+}
+
+.rtlv__feature-card:nth-child(1) { animation-delay: 0.3s; }
+.rtlv__feature-card:nth-child(2) { animation-delay: 0.4s; }
+.rtlv__feature-card:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+
+
+
+
+/* ////////////////// Kinesis Text ///////////////////// */
+
+
+.kinesis-platform-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+  padding-left: 32px;
+  padding-right: 16px;
+}
+
+.kinesis-inner-container {
+  display: flex;
+  /* flex-direction: column; */
+  width: 100%;
+  gap: 24px;
+}
+
+.kinesis-heading-wrapper {
+  width: 100%;
+}
+
+.kinesis-heading-widget {}
+
+.kinesis-widget-container {}
+
+.kinesis-heading {
+  color: #101828;
+  font-size: 45px;
+  font-weight: normal;
+  line-height: 1.3;
+  font-family: "DM Sans", sans-serif;
+}
+
+.kinesis-text-wrapper {
+  width: 100%;
+  align-content: center;
+}
+
+.kinesis-text-widget {}
+
+.kinesis-paragraph {
+  color: rgba(16, 24, 40, 0.6);
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.8;
+  font-family: "DM Sans", sans-serif;
+}

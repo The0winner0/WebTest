@@ -1,0 +1,193 @@
+/* Platform Page Styles */
+
+/* General Body and Layout */
+.platform-main {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+    letter-spacing: 0.06em;
+    word-spacing: 0.2em;
+    color: rgb(112, 116, 126);
+    background-color: #fff;
+}
+
+.platform-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.platform-section {
+    padding: 40px 20px;
+}
+
+/* Headings */
+.platform-heading {
+    color: black;
+    margin: 0.5em 0;
+    font-size: 3em;
+    font-weight: 450;
+}
+
+.platform-subheading {
+    font-size: 2rem;
+}
+
+/* Images */
+.platform-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* SVG and Icon Styles */
+.platform-svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* gap: 20px; */
+}
+
+/* List Styles */
+.platform-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+.platform-list-item {
+    margin-bottom: 10px;
+}
+
+/* Use Cases Section */
+.platform-use-cases-container {
+    display: flex;
+    align-items: stretch;
+    gap: 40px;
+    text-align: left;
+}
+
+.platform-use-cases-image-wrapper,
+.platform-use-cases-text-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Config App Section */
+.platform-config-app-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    text-align: left;
+}
+
+.platform-config-app-text {
+    flex: 0 0 40%;
+    /* min-width: 300px; */
+}
+
+.platform-config-app-gallery {
+    flex: 0 0 60%;
+    /* min-width: 250px; */
+}
+
+.platform-config-app-image-group {
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.platform-config-app-image-item {
+    /* max-width: 100px; */
+    margin: 0;
+    flex: 1;
+    
+}
+
+.platform-config-app-image {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.platform-config-app-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tags Section */
+.platform-tags-description-large {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/* Feature/Icon Box */
+.platform-feature-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 250px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+}
+
+.platform-icon-box {
+    background-color: #ffffff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.platform-icon-box-svg {
+    width: 56px;
+    height: 56px;
+    fill: #000000;
+}
+
+.platform-icon-box-title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #000000;
+    margin: 0 0 0.5rem 0;
+}
+
+.platform-icon-box-description {
+    font-size: 1rem;
+    color: rgb(112, 116, 126);
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* Media Queries */
+@media (max-width: 1000px) {
+    .platform-use-cases-container,
+    .platform-config-app-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .platform-use-cases-text-wrapper,
+    .platform-config-app-text {
+        text-align: center;
+    }
+
+    .platform-list {
+        display: inline-block;
+        text-align: left;
+    }
+}

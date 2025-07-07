@@ -1,0 +1,21 @@
+.progressBarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; /* Height of the progress bar */
+  background-color: transparent; /* The container is invisible */
+  z-index: 1001; /* Should be above navbar if navbar is not sticky, or just below if it is */
+}
+
+/* If your navbar is sticky, you need to adjust the top position */
+/* For example, if your navbar is 60px tall: */
+/* .progressBarContainer { top: 60px; } */
+
+
+.progressBar {
+  height: 100%;
+  background-color: #00008b; /* Color of the progress bar */
+  width: 0%; /* Starts at 0% width */
+  transition: width 0.1s linear; /* Smooths the progress */
+}

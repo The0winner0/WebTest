@@ -1,0 +1,44 @@
+
+/*--------------------------------------------------------------
+5. Media Queries (Mobile-first)
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .links {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .title-large,
+  .title-gradient {
+    font-size: 8vw;
+  }
+
+  .hero-container {
+    height: auto;
+    margin-top: 70px;
+  }
+
+  .features-wrapper {
+    gap: 1rem;
+  }
+}
+
+.video-container {
+  max-width: 840px;     
+  width: 80vw;           
+  margin: 0 auto;        
+}
+
+.video-container iframe {
+  display: block;        
+  width: 100%;           
+  aspect-ratio: 16 / 9; 
+  height: auto;          
+}
+

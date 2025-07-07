@@ -1,0 +1,81 @@
+/* src/components/BlogPostCard.css */
+
+.blog-post-overlay {
+  display: block;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #ffffff;
+  aspect-ratio: 16 / 9;
+  background-color: #333;
+}
+
+.blog-post-overlay .post-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.blog-post-overlay .post-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  z-index: 1;
+}
+
+.blog-post-overlay .post-info-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 24px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.blog-post-overlay:hover .post-cover-img {
+  transform: scale(1.1);
+}
+
+.blog-post-overlay .post-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  transition: transform 0.3s ease-in-out;
+}
+
+.blog-post-overlay:hover .post-title {
+  transform: translateY(-35px);
+}
+
+.blog-post-overlay .post-footer {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-size: 0.9rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+}
+
+.blog-post-overlay:hover .post-footer {
+  opacity: 1;
+}
+
+.blog-post-overlay .meta-separator::before {
+  content: '•';
+}
