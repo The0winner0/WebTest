@@ -7,6 +7,9 @@ import dynamic from 'next/dynamic';
 
 import PageHeading from '../components/PageHeading';
 import '../Css/AboutUs.css';
+import image1 from '../../../public/images/AboutUs/Sumit_Dev.jpeg';
+import image2 from '../../../public/images/AboutUs/Jithendranadh_N.jpeg'
+import image3 from '../../../public/images/AboutUs/Padma_Thunnan.jpeg'
 
 const LazyImageSlideshow = dynamic(() => import('./ImageSlideshow'), {
   ssr: false, 
@@ -46,17 +49,17 @@ const valuesData = [
 
 const leadersData = [
   {
-    imgSrc: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/1664804399829.jpeg?fit=400%2C400&ssl=1",
+    imgSrc: image2,
     name: "Jithendranadh N",
     title: "People and Business",
   },
   {
-    imgSrc: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/1552894137429.jpeg?fit=400%2C400&ssl=1",
+    imgSrc: image1,
     name: "Sumit Dev",
     title: "Software and Products",
   },
   {
-    imgSrc: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/1568492675841.jpeg?fit=400%2C400&ssl=1",
+    imgSrc: image3,
     name: "Padma Thunnan",
     title: "Hardware and Systems",
   },

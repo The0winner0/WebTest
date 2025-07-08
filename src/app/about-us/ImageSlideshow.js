@@ -1,50 +1,83 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react'; // 1. Import useRef
 import Image from 'next/image';
-
-// add more images direcly here if needed
-const galleryImages = [
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/03/Slide-16_9-2.png?fit=1920%2C1080&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/03/Slide-16_9-2.png?resize=150%2C150&ssl=1" },
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.41.35-PM-e1650619428475.jpeg?fit=768%2C568&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.41.35-PM-e1650619428475.jpeg?resize=150%2C150&ssl=1" },
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/03/Slide-16_9-1.png?fit=1920%2C1080&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/03/Slide-16_9-1.png?resize=150%2C150&ssl=1" },
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.06.19-PM-2.jpeg?fit=1024%2C768&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.06.19-PM-2.jpeg?resize=150%2C150&ssl=1" },
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.45.49-PM-e1650619519750.jpeg?fit=798%2C701&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.45.49-PM-e1650619519750.jpeg?resize=150%2C150&ssl=1" },
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.06.19-PM-e1650614812619.jpeg?fit=768%2C568&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-04-22-at-1.06.19-PM-e1650614812619.jpeg?resize=150%2C150&ssl=1" },
-  { main: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-02-04-at-11.59.45-AM.jpeg?fit=1024%2C768&ssl=1", thumb: "https://i0.wp.com/atollsolutions.com/wp-content/uploads/2024/01/WhatsApp-Image-2022-02-04-at-11.59.45-AM.jpeg?resize=150%2C150&ssl=1" },
-];
+import { fetchAPI, getStrapiURL } from '../lib/api';
 
 export default function ImageSlideshow({ autoPlayInterval = 7000 }) {
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const images = galleryImages;
 
-  // FIX: Wrap handler in useCallback to stabilize the function reference.
-  // It only needs to be recreated if the number of images changes.
+  // 2. Create a ref to hold an array of the thumbnail button elements
+  const thumbnailRefs = useRef([]);
+
+  useEffect(() => {
+    async function loadImages() {
+      try {
+        const res = await fetchAPI('/api/gallery-images?populate=*');
+        if (!res.data) throw new Error("Image data not found");
+
+        const formattedImages = res.data
+          .map(item => {
+            if (!item.main?.url) return null;
+            return {
+              main: getStrapiURL(item.main.url),
+              thumb: getStrapiURL(item.main.formats?.thumbnail?.url || item.main.url)
+            };
+          })
+          .filter(Boolean);
+
+        // Initialize the refs array with the correct size
+        thumbnailRefs.current = thumbnailRefs.current.slice(0, formattedImages.length);
+        setImages(formattedImages);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadImages();
+  }, []);
+
   const handleNext = useCallback(() => {
+    if (images.length === 0) return;
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   }, [images.length]);
 
-  // FIX: Do the same for handlePrev for consistency.
   const handlePrev = useCallback(() => {
+    if (images.length === 0) return;
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   }, [images.length]);
 
-  // Set up the auto-play interval
   useEffect(() => {
-    if (autoPlayInterval === 0) return; // Disable autoplay if interval is 0
-
+    if (autoPlayInterval === 0 || images.length === 0) return;
     const interval = setInterval(handleNext, autoPlayInterval);
     return () => clearInterval(interval);
-    
-    // FIX: Add handleNext to the dependency array. Since handleNext is now
-    // memoized with useCallback, this effect will only reset the interval
-    // if autoPlayInterval changes or if handleNext itself changes (i.e., when images.length changes).
-  }, [handleNext, autoPlayInterval]);
+  }, [handleNext, autoPlayInterval, images.length]);
+
+  // 3. Add a new useEffect to scroll the active thumbnail into view
+  useEffect(() => {
+    // Ensure the ref for the current index exists
+    if (thumbnailRefs.current[currentIndex]) {
+      // Tell the browser to scroll the container so this element is visible
+      thumbnailRefs.current[currentIndex].scrollIntoView({
+        behavior: 'smooth', // for a smooth scrolling animation
+        block: 'nearest',    // avoids vertical scrolling
+        inline: 'center'     // scrolls horizontally to the center
+      });
+    }
+  }, [currentIndex]); // This effect runs whenever the currentIndex changes
 
   const handleThumbnailClick = (index) => {
     setCurrentIndex(index);
   };
-  
+
+  if (isLoading) return <div className="slideshow-placeholder">Loading Gallery...</div>;
+  if (error) return <div className="slideshow-placeholder">Error: {error}</div>;
+  if (images.length === 0) return <div className="slideshow-placeholder">No images in the gallery.</div>;
+
   return (
     <div className="slideshow">
       <div className="slideshow__main-image-container">
@@ -55,54 +88,43 @@ export default function ImageSlideshow({ autoPlayInterval = 7000 }) {
           >
             <Image
               src={image.main}
+              alt=""
+              fill
+              className="slideshow__image-background"
+              quality={50}
+            />
+            <Image
+              src={image.main}
               alt={`Gallery image ${index + 1}`}
               fill
-              className="slideshow__image"
+              className="slideshow__image-foreground"
               sizes="(max-width: 768px) 100vw, 800px"
               priority={index === 0}
-              onError={(e) => e.target.style.display = 'none'} // Basic fallback
+              onError={(e) => e.target.style.display = 'none'}
             />
           </div>
         ))}
       </div>
 
       <div className="slideshow__controls-overlay">
-        <button 
-          onClick={handlePrev} 
-          className="slideshow__nav-arrow slideshow__nav-arrow--prev"
-          aria-label="Previous image"
-        >
-          &#x25C0;
-        </button>
-
+        <button onClick={handlePrev} className="slideshow__nav-arrow slideshow__nav-arrow--prev" aria-label="Previous image">&#x25C0;</button>
         <div className="slideshow__thumbnails-wrapper">
           <div className="slideshow__thumbnails">
             {images.map((image, index) => (
               <button
+                // 4. Assign the ref to each button element in the array
+                ref={el => thumbnailRefs.current[index] = el}
                 key={index}
                 onClick={() => handleThumbnailClick(index)}
                 className={`slideshow__thumbnail-button ${currentIndex === index ? 'slideshow__thumbnail-button--active' : ''}`}
                 aria-label={`Go to slide ${index + 1}`}
               >
-                <Image
-                  src={image.thumb}
-                  alt={`Thumbnail ${index + 1}`}
-                  width={150}
-                  height={150}
-                  className="slideshow__thumbnail-image"
-                />
+                <Image src={image.thumb} alt={`Thumbnail ${index + 1}`} width={150} height={150} className="slideshow__thumbnail-image" />
               </button>
             ))}
           </div>
         </div>
-
-        <button 
-          onClick={handleNext} 
-          className="slideshow__nav-arrow slideshow__nav-arrow--next"
-          aria-label="Next image"
-        >
-          &#x25B6;
-        </button>
+        <button onClick={handleNext} className="slideshow__nav-arrow slideshow__nav-arrow--next" aria-label="Next image">&#x25B6;</button>
       </div>
     </div>
   );

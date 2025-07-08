@@ -1,0 +1,55 @@
+/* /app/blog/components/BlogIterator.module.css */
+
+.blog-iterator {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem; /* Adds space between the links */
+  margin-left: 230px;
+  margin-right: 230px;
+}
+
+.blog-iterator__link {
+  flex: 1;
+  min-width: 0; 
+}
+
+.blog-iterator__link a {
+  display: block;
+  padding: 1rem;
+  border-radius: 8px;
+  color: #95989c;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  height: 100%; 
+}
+
+.blog-iterator__link a:hover {
+  color: #626467; 
+  transform: scale(1.05);
+}
+
+.blog-iterator__link--next {
+  text-align: right;
+}
+
+.blog-iterator__link h3 {
+  margin: 0.5rem 0 0;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30ch; 
+}
+
+.blog-iterator__link--next h3 {
+    margin-left: auto; 
+}
+
+
+.blog-iterator__link span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
