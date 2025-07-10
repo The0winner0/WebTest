@@ -2,7 +2,7 @@
 
 /** @type {import('next').NextConfig} */
 
-const strapiUrlString = process.env.STRAPI_API_URL || "http://localhost:1337";
+const strapiUrlString = process.env.STRAPI_API_URL;
 
 const strapiUrl = new URL(strapiUrlString);
 

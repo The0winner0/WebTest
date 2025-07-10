@@ -22,7 +22,6 @@ const FadeInSection = ({ children, delay = 0 }) => {
       observer.observe(currentRef);
     }
 
-    // The cleanup function also uses the stable local variable
     return () => {
       if (currentRef) {
         observer.unobserve(currentRef);
