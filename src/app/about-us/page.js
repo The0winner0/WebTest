@@ -4,7 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 import PageHeading from '../components/PageHeading';
-import '../Css/AboutUs.css';
+import '../style/AboutUs.css';
 import image1 from '../../../public/images/AboutUs/Sumit_Dev.jpeg';
 import image2 from '../../../public/images/AboutUs/Jithendranadh_N.jpeg'
 import image3 from '../../../public/images/AboutUs/Padma_Thunnan.jpeg'

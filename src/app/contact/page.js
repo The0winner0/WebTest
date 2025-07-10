@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useRef, useReducer } from 'react';
 import PageHeading from '../components/PageHeading';
-import '../Css/Contact.css';
+import '../style/Contact.css';
 
 const useIntersectionObserver = (options) => {
     const containerRef = useRef(null);
