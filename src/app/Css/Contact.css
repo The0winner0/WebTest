@@ -217,7 +217,14 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
+
+.contact-page .info-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); 
+}
+
 
 .contact-page .info-card__icon-wrapper {
     display: flex;
@@ -294,5 +301,73 @@
     }
     .contact-page .contact-form-wrapper {
         padding: 3rem;
+    }
+}
+
+
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+@media (max-width: 600px) {
+    .contact-page .hero-section {
+        padding-top: 3rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .contact-page .hero-section__heading {
+        font-size: 1.875rem;
+    }
+
+    .contact-page .hero-section__paragraph {
+        font-size: 1rem;
+    }
+
+    .contact-page .contact-form-section {
+        padding: 1rem 0.5rem;
+    }
+
+    .contact-page .contact-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .contact-page .form-title {
+        font-size: 1.5rem;
+    }
+
+    .contact-page .info-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    .contact-page .info-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-page .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .contact-page .contact-form-wrapper {
+        padding: 1.25rem;
+    }
+
+    .contact-page .form-title {
+        font-size: 1.25rem;
+    }
+
+    .contact-page .info-card__icon-bg {
+        padding: 1rem;
+    }
+
+    .contact-page .info-card__icon-svg {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .contact-page .info-card__title {
+        font-size: 1rem;
     }
 }

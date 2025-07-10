@@ -38,8 +38,18 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const handleLinkClick = () => {
+        if (isMenuOpen) {
+            setIsMenuOpen(false);
+        }
+    };
+
     useEffect(() => {
         const controlNavbar = () => {
+            if (isMenuOpen) {
+                return;
+            }
+
             const currentScrollY = window.scrollY;
             if (currentScrollY > lastScrollY && currentScrollY > 10) {
                 setIsVisible(false);
@@ -51,7 +61,7 @@ const Navbar = () => {
 
         window.addEventListener('scroll', controlNavbar);
         return () => window.removeEventListener('scroll', controlNavbar);
-    }, [lastScrollY]);
+    }, [lastScrollY, isMenuOpen]); 
     
     useEffect(() => {
         document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
@@ -66,14 +76,14 @@ const Navbar = () => {
         <header>
             <div id="wrapper-navbar" className={navbarClasses}>
                 <div className="navbar__container">
-                    <Link href="/" className="navbar__brand">
-                        <Image src={logo} alt="Atoll Solutions" className="navbar__logo" width={150} height={45} priority />
+                    <Link href="/" className="navbar__brand" onClick={handleLinkClick}>
+                        <Image unoptimized={true} src={logo} alt="Atoll Solutions" className="navbar__logo" width={150} height={45} priority />
                     </Link>
                     <div className="navbar__collapsible">
                         <nav className="navbar__menu">
                             <ul className="menu">
                                 {navLinks.map((link) => (
-                                    <li key={link.href} className="menu__item">
+                                    <li key={link.href} className="menu__item" onClick={handleLinkClick}>
                                         <Link href={link.href} className="menu__link">{link.label}</Link>
                                     </li>
                                 ))}
@@ -87,7 +97,7 @@ const Navbar = () => {
                                     </a>
                                 ))}
                             </div>
-                            <Link href="/contact" className="nav-button">Contact Us</Link>
+                            <Link href="/contact" className="nav-button" onClick={handleLinkClick}><span>Contact Us</span></Link>
                         </div>
                     </div>
                     <button className="hamburger" aria-label="Toggle Menu" onClick={toggleMenu}>

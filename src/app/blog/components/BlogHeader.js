@@ -1,14 +1,15 @@
 import React from 'react';
 import Spacer from './Spacer';
-import PageHeading from '../../components/PageHeading'; // Assuming this component exists
+import PageHeading from '../../components/PageHeading'; 
+import styles from '../Blog.module.css'; 
 
 const BlogHeader = ({ title }) => {
   return (
-    <header className="blog-page-header">
-      <div className="blog-page-header-content">
+    <header className={styles.blogPageHeader}>
+      <div className={styles.blogPageHeaderContent}>
         <PageHeading title="Blog" />
         <Spacer />
-        <h1 className="blog-page-title">{title}</h1>
+        <h1 className={styles.blogPageTitle}>{title}</h1>
         <Spacer />
       </div>
     </header>

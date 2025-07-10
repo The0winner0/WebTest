@@ -23,8 +23,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--rtlv-gap);
-  /* align-items: stretch; */
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* HEADER (Left Section) */
 .rtlv__header {
@@ -161,6 +172,77 @@
     transform: none;
   }
 }
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+
+@media (max-width: 600px) {
+  .rtlv {
+    padding: 1rem 0;
+  }
+
+  .rtlv__inner {
+    padding-inline: 1rem;
+    gap: 1rem;
+  }
+
+  .rtlv__header {
+    padding: 2rem;
+    min-width: 100%; 
+  }
+
+  .rtlv__heading {
+    font-size: 2.2rem;
+    line-height: 1.4;
+  }
+
+  .rtlv__features {
+    gap: 1rem;
+  }
+
+  .rtlv__features-first-row {
+    gap: 1rem;
+  }
+
+  .rtlv__feature-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+  }
+
+  .rtlv__feature-text {
+    font-size: 0.9rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .rtlv__feature-card-1,
+  .rtlv__feature-card-2,
+  .rtlv__feature-card-3 {
+    padding: 2rem 1rem;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .rtlv__header {
+    padding: 1.5rem;
+  }
+
+  .rtlv__heading {
+    font-size: 2rem;
+  }
+
+  .rtlv__feature-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .rtlv__feature-card-1,
+  .rtlv__feature-card-2,
+  .rtlv__feature-card-3 {
+    background-size: 60%; 
+  }
+}
 
 
 
@@ -183,7 +265,6 @@
 
 .kinesis-inner-container {
   display: flex;
-  /* flex-direction: column; */
   width: 100%;
   gap: 24px;
 }
@@ -217,4 +298,39 @@
   font-weight: normal;
   line-height: 1.8;
   font-family: "DM Sans", sans-serif;
+}
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+
+@media (max-width: 600px) {
+  .kinesis-platform-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .kinesis-inner-container {
+    flex-direction: column; 
+    gap: 1rem;
+  }
+
+  .kinesis-heading {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+
+  .kinesis-paragraph {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .kinesis-platform-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .kinesis-heading {
+    font-size: 32px;
+  }
 }

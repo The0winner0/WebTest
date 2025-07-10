@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from '../Blog.module.css';
 
 const Spacer = () => {
     return (
-        <div className="blog-page-spacer"></div>
+        <div className={styles.blogPageSpacer}></div>
     );
 };
 

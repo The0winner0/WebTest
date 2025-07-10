@@ -14,7 +14,7 @@ const pins = [
 
 const Pin = ({ style }) => (
     <div className="pin" style={style}>
-        <Image 
+        <Image unoptimized={true}  
             src={pinImg}
             alt="map pin" 
             width={34} 
@@ -27,7 +27,7 @@ const Hero = () => {
     return (
         <section className="hero-section">
             <div className="hero-container">
-                <Image
+                <Image unoptimized={true} 
                     src={backgroundImgDesktop}
                     alt="Location intelligence map"
                     width={1536}
@@ -35,7 +35,7 @@ const Hero = () => {
                     className="background-img background-img--desktop"
                     priority
                 />
-                <Image
+                <Image unoptimized={true} 
                     src={backgroundImgMobile}
                     alt="Location intelligence map"
                     width={461}
@@ -54,7 +54,7 @@ const Hero = () => {
                     <p className="description">
                         We provide reliable and real-time location visibility with our scalable end-to-end IoT platform. <br /> Get in touch to see how it can help you implement your digital transformation.
                     </p>
-                    <button className="button" href="/contact">Book a Demo</button>
+                    <button className="button" href="/contact"><span>Book a Demo</span></button>
                 </div>
             </div>
         </section>

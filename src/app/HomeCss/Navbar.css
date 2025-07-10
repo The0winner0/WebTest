@@ -15,7 +15,7 @@ body {
   width: 100%;
   background-color: #fff;
   /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); */
-  z-index: 1000;
+  z-index: 90;
   height: 110px;
   transition: transform var(--navbar-transition-speed) ease-in-out, opacity var(--navbar-transition-speed) ease-in-out;
 }
@@ -127,6 +127,13 @@ body {
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
   white-space: nowrap;
+}
+.nav-button span {
+  display: inline-block; 
+  transition: transform 0.2s ease-in-out;
+}
+.button:hover span {
+  transform: scale(0.9);
 }
 
 .nav-button:hover {

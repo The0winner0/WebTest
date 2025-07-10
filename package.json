@@ -17,8 +17,6 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "eslint": "^8",
-    "eslint-config-next": "^14.2.4"
+    "knip": "^5.61.3"
   }
 }

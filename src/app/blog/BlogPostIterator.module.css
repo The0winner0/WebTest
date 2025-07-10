@@ -1,0 +1,111 @@
+/* /app/blog/components/BlogIterator.module.css */
+
+.blog-iterator {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.blog-iterator__link {
+  flex: 1;
+  min-width: 0;
+}
+
+.blog-iterator__link a {
+  display: block;
+  padding: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  height: 100%;
+}
+
+.blog-iterator__link a:hover {
+  transform: scale(0.99);
+}
+
+.blog-iterator__link--next {
+  text-align: right;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.arrow {
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0; 
+}
+
+.blog-iterator__link--prev a:hover .arrow {
+    transform: translateX(-10px);
+}
+
+.blog-iterator__link--next .arrow {
+    transform: rotate(180deg);
+}
+
+.blog-iterator__link--next a:hover .arrow {
+    transform: rotate(180deg) translateX(-5px);
+}
+
+.text-wrapper {
+    overflow: hidden; 
+}
+
+.blog-iterator__link span {
+    font-size: 0.8rem; 
+    color: #888888;   
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.blog-iterator__link h3 {
+    margin: 0.25rem 0 0;
+    font-size: 1rem;
+    color: #000000;      
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+
+.blog-iterator__link--next .text-wrapper {
+    text-align: right;
+}
+
+
+
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+
+@media (max-width: 600px) {
+  .blog-iterator__link a {
+    padding: 0.75rem;
+  }
+
+  .blog-iterator__link h3 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .blog-iterator {
+    flex-direction: column; 
+    margin-top: 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .blog-iterator__link--next {
+    text-align: left; 
+  }
+
+  .blog-iterator__link--next .text-wrapper {
+    text-align: left;
+  }
+}

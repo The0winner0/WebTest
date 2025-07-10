@@ -7,13 +7,11 @@
   padding: 1rem 1rem;
   padding-bottom: 6rem;
   width: 100%;
-  /* max-width: 1200px; */
-  /* margin: 0 auto; */
   background: radial-gradient(
-    circle at center,       /* shape & position */
-    rgb(0, 38, 67) 0%,             /* center color (at 0%) */
-    rgb(0, 36, 63) 40%,            /* mid-point */
-    rgb(0, 34, 60) 100%            /* edge color (at 100%) */
+    circle at center,      
+    rgb(0, 38, 67) 0%,            
+    rgb(0, 36, 63) 40%,            
+    rgb(0, 34, 60) 100%            
   );
   max-width: 1265px;
   height: auto;
@@ -54,7 +52,6 @@
   /* padding: 1rem; */
 }
 
-/* Icon wrapper stays square via relative sizing */
 .bdt-ep-advanced-icon-box-icon-wrap {
   display: inline-flex;
   align-items: center;
@@ -74,7 +71,65 @@
   
 }
 
-/* Alternate icon box */
 .bdt-ep-advanced-icon-box-2 {
   background-color: rgb(190, 235, 255);
+}
+
+/* ===================================
+   Mobile Responsive Styles 
+   =================================== */
+
+@media (max-width: 600px) {
+  .business-verticals {
+    padding-bottom: 4rem;
+  }
+
+  .verticals-row {
+    gap: 2rem;
+  }
+
+  .vertical-card {
+    flex-basis: 160px; 
+    padding: 0.75rem;
+  }
+
+  .bdt-ep-advanced-icon-box-icon-wrap {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .e-font-icon-svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .vertical-title {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .vertical-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .business-verticals {
+    padding-bottom: 3rem;
+  }
+
+  .verticals-row {
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .vertical-card {
+    flex-basis: 100%; 
+    max-width: 280px; 
+  }
+
+  .bdt-ep-advanced-icon-box-icon-wrap {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 }

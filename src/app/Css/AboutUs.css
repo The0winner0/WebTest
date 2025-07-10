@@ -219,12 +219,11 @@
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  color: white; /* Added for arrow visibility */
+  color: white;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .About-us-page .slideshow__nav-arrow:hover {
-  /* background-color: rgba(255, 255, 255, 0.2); */
   transform: scale(1.1);
 }
 
@@ -234,7 +233,6 @@
   justify-content: center;
   
   overflow-x: auto;
-  /* -ms-overflow-style: none;  */
   scrollbar-width: none; 
 }
 .About-us-page .slideshow__thumbnails-wrapper::-webkit-scrollbar {
@@ -243,7 +241,6 @@
 
 
 .About-us-page .slideshow__thumbnails {
-  /* margin-left: 100px; */
   display: flex;
   gap: 1rem;
   flex-wrap: nowrap;
@@ -272,7 +269,6 @@
 }
 
 .About-us-page .slideshow__thumbnail-button--active {
-  /* border-color: #3b82f6; */
   transform: scale(1.1);
   opacity: 1;
 }
@@ -321,7 +317,6 @@
 }
 
 
-/* Gallery images background */
 
 .slideshow__slide {
   position: relative;
@@ -346,4 +341,107 @@
   z-index: 2; 
 }
 
-/* */
+
+/* =================================================================
+   Mobile Responsive Styles
+   ================================================================= */
+
+@media (max-width: 600px) {
+  .About-us-page .hero-section,
+  .About-us-page .values-leaders-section,
+  .About-us-page .team-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .About-us-page .hero-section__heading {
+    font-size: 1.75rem; 
+  }
+
+  .About-us-page .section-title,
+  .About-us-page .team-section-title {
+    font-size: 1.5rem; 
+    margin-bottom: 2rem;
+  }
+
+  .About-us-page .values-grid,
+  .About-us-page .leaders-grid {
+    gap: 1.5rem;
+  }
+  
+  .About-us-page .values-grid {
+    margin-bottom: 3rem;
+  }
+
+  .About-us-page .value-card__title,
+  .About-us-page .leader-card__name {
+    font-size: 1.125rem; 
+  }
+
+  .About-us-page .leader-card__image {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .About-us-page .slideshow__nav-arrow {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  
+  .About-us-page .slideshow__thumbnails-wrapper {
+    margin: 0 0.5rem;
+  }
+  
+  .About-us-page .slideshow__thumbnails {
+    gap: 0.5rem;
+  }
+
+  .About-us-page .slideshow__thumbnail-button {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+
+@media (max-width: 400px) {
+  .About-us-page .hero-section,
+  .About-us-page .values-leaders-section,
+  .About-us-page .team-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .About-us-page .hero-section__heading {
+    font-size: 1.5rem;
+  }
+
+  .About-us-page .section-title,
+  .About-us-page .team-section-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .About-us-page .values-grid {
+    margin-bottom: 2.5rem;
+  }
+  
+  .About-us-page .value-card__title,
+  .About-us-page .leader-card__name {
+    font-size: 1rem;
+  }
+
+  .About-us-page .slideshow__controls-overlay {
+    padding: 0.75rem;
+  }
+
+  .About-us-page .slideshow__nav-arrow {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .About-us-page .slideshow__thumbnail-button {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}

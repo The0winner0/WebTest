@@ -7,21 +7,25 @@ const FadeInSection = ({ children, delay = 0 }) => {
   const domRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = domRef.current;
+
     const observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         setIsVisible(true);
-        observer.unobserve(domRef.current);
+        if (currentRef) {
+          observer.unobserve(currentRef);
+        }
       }
     });
 
-    const { current } = domRef;
-    if (current) {
-      observer.observe(current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
+    // The cleanup function also uses the stable local variable
     return () => {
-      if (current) {
-        observer.unobserve(current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

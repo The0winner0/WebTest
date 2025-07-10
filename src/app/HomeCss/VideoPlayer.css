@@ -42,3 +42,18 @@
   height: auto;          
 }
 
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+
+@media (max-width: 600px) {
+  .video-container {
+    width: 90vw; 
+  }
+}
+
+@media (max-width: 400px) {
+  .video-container {
+    width: 95vw; 
+  }
+}

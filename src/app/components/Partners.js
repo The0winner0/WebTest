@@ -57,7 +57,6 @@ const useMediaQuery = (query) => {
         const media = window.matchMedia(query);
         const listener = () => setMatches(media.matches);
         
-        // Set initial state
         listener();
         
         media.addEventListener('change', listener);
@@ -70,10 +69,8 @@ const useMediaQuery = (query) => {
 
 const PartnerScroller = ({ items }) => {
     const [isPaused, setIsPaused] = useState(false);
-    // When the screen is 1024px or less, the slideshow will be active.
     const shouldAnimate = useMediaQuery(`(max-width: ${partnersData.length * 200}px)`);
 
-    // Duplicate items for a seamless animation loop only when animating
     const displayItems = shouldAnimate ? [...items, ...items] : items;
 
     return (
@@ -92,7 +89,7 @@ const PartnerScroller = ({ items }) => {
                         title={item.name}
                         className="partner-logo-link"
                     >
-                        <Image
+                        <Image unoptimized={true} 
                             src={item.imageUrl}
                             alt={`${item.name} Logo`}
                             width={160}

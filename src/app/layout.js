@@ -5,7 +5,7 @@ import './HomeCss/Navbar.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PageTransitionWrapper from './components/PageTransitionWrapper';
-// import SmoothScrollLayout from './components/SmoothScroll';
+import SmoothScrollLayout from './components/SmoothScroll';
 
 const dm_sans = DM_Sans({
   subsets: ['latin'],
@@ -33,16 +33,13 @@ export default function RootLayout({ children }) {
     
     <html lang="en" className={`${dm_sans.variable} ${roboto.variable}`}>
       
-      <head>
-        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossOrigin="anonymous" referrerPolicy="no-referrer" /> */}
-      </head>
       <body className="font-roboto">
         <Navbar />
         <PageTransitionWrapper>
-        {/* <SmoothScrollLayout> */}
+        <SmoothScrollLayout>
         <main>{children}</main>
+        </SmoothScrollLayout>
         </ PageTransitionWrapper>
-        {/* </SmoothScrollLayout> */}
         <Footer />
       </body>
     </html>

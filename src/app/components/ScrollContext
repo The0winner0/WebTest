@@ -1,0 +1,10 @@
+"use client";
+
+import { createContext } from 'react';
+
+const ScrollContext = createContext({
+  registerIframe: () => {},
+  unregisterIframe: () => {},
+});
+
+export default ScrollContext;

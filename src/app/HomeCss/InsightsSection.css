@@ -105,3 +105,39 @@
     font-size: 48px;
   }
 }
+
+
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+
+@media (max-width: 600px) {
+  .insights-section-wrapper {
+    padding: 2rem 1.5rem; 
+    margin-top: 2rem;
+  }
+
+  .insights-section-heading {
+    font-size: 28px; 
+    text-align: center;
+  }
+
+  .insights-section-container {
+    gap: 2rem; 
+  }
+}
+
+@media (max-width: 400px) {
+  .insights-section-wrapper {
+    padding: 2rem 1rem;
+  }
+
+  .insights-section-heading {
+    font-size: 24px;
+  }
+
+  .insights-section-button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}

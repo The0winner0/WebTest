@@ -1,6 +1,6 @@
-/* Platform Page Styles */
-
-/* General Body and Layout */
+/* ===================================
+   Platform
+   =================================== */
 .platform-main {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
     letter-spacing: 0.06em;
@@ -22,7 +22,6 @@
     padding: 40px 20px;
 }
 
-/* Headings */
 .platform-heading {
     color: black;
     margin: 0.5em 0;
@@ -44,7 +43,6 @@
     margin-right: auto;
 }
 
-/* SVG and Icon Styles */
 .platform-svg-container {
     display: flex;
     justify-content: center;
@@ -53,7 +51,6 @@
     /* gap: 20px; */
 }
 
-/* List Styles */
 .platform-list {
     list-style-type: disc;
     padding-left: 20px;
@@ -65,7 +62,6 @@
     margin-bottom: 10px;
 }
 
-/* Use Cases Section */
 .platform-use-cases-container {
     display: flex;
     align-items: stretch;
@@ -81,7 +77,6 @@
     justify-content: center;
 }
 
-/* Config App Section */
 .platform-config-app-container {
     display: flex;
     align-items: center;
@@ -92,24 +87,20 @@
 
 .platform-config-app-text {
     flex: 0 0 40%;
-    /* min-width: 300px; */
 }
 
 .platform-config-app-gallery {
     flex: 0 0 60%;
-    /* min-width: 250px; */
 }
 
 .platform-config-app-image-group {
     display: flex;
-    /* justify-content: center; */
     flex-wrap: wrap;
     align-items: center;
     gap: 15px;
 }
 
 .platform-config-app-image-item {
-    /* max-width: 100px; */
     margin: 0;
     flex: 1;
     
@@ -125,13 +116,11 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Tags Section */
 .platform-tags-description-large {
     font-size: 1.2em;
     font-weight: 500;
 }
 
-/* Feature/Icon Box */
 .platform-feature-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -173,7 +162,13 @@
 }
 
 
-/* Media Queries */
+
+/* Configure app   */
+
+
+
+
+
 @media (max-width: 1000px) {
     .platform-use-cases-container,
     .platform-config-app-container {
@@ -189,5 +184,61 @@
     .platform-list {
         display: inline-block;
         text-align: left;
+    }
+}
+
+/* ===================================
+   Mobile Responsive Styles 
+   =================================== */
+
+@media (max-width: 600px) {
+    .platform-section {
+        padding: 30px 15px;
+    }
+
+    .platform-heading {
+        font-size: 2.25em;
+        line-height: 1.2;
+    }
+
+    .platform-subheading {
+        font-size: 1.5rem;
+    }
+
+    .platform-use-cases-container,
+    .platform-config-app-container {
+        gap: 25px;
+    }
+
+    .platform-icon-box {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .platform-section {
+        padding: 25px 10px;
+    }
+
+    .platform-heading {
+        font-size: 2em;
+    }
+
+    .platform-subheading {
+        font-size: 1.25rem;
+    }
+
+    .platform-icon-box-svg {
+        width: 48px;
+        height: 48px;
+    }
+
+    .platform-icon-box-title {
+        font-size: 1.1rem;
+    }
+
+    .platform-icon-box-description {
+        font-size: 0.95rem;
     }
 }

@@ -1,6 +1,4 @@
 
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
@@ -75,7 +73,7 @@ const ValueCard = ({ icon, title, description }) => (
 
 const LeaderCard = ({ imgSrc, name, title }) => (
   <div className="leader-card">
-    <Image
+    <Image unoptimized={true} 
       src={imgSrc}
       alt={name}
       width={400}

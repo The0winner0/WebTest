@@ -54,7 +54,7 @@ const Footer = () => {
             <div className="footer-container">
                 <FadeInSection delay={10}>
                     <div className="footer-logo-container">
-                        <Image src="/images/atoll-solutions-logo.png" alt="Atoll Solutions Logo" className="footer-logo" width={130} height={40} />
+                        <Image unoptimized={true}  src="/images/atoll-solutions-logo.png" alt="Atoll Solutions Logo" className="footer-logo" width={130} height={40} />
                         <p className="footer-tagline">Making location intelligence precise &amp; ubiquitous</p>
                     </div>
                 </FadeInSection>
@@ -64,14 +64,9 @@ const Footer = () => {
                     ))}
                 </div>
             </div>
-            <footer className="footer">
+            <footer className="footer" style={{ borderTop: '0.1px solid #ccc', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
                 <div className="container">
-                    <p>&copy; {currentYear} Atoll Solutions. All rights reserved.</p>
-                    <div className="footer-legal-links">
-                        <Link href="/privacy" className="footer-legal-link">Privacy Policy</Link>
-                        <span>&middot;</span>
-                        <Link href="/terms" className="footer-legal-link">Terms of Service</Link>
-                    </div>
+                    <p>&copy; {currentYear} Atoll Solutions Private Limited</p>
                 </div>
             </footer>
         </>

@@ -1,21 +1,58 @@
 // /app/api/revalidate/route.js
 
-import { NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
-
+import { NextResponse } from 'next/server';
 export async function POST(request) {
-  const secret = request.nextUrl.searchParams.get('secret');
+  console.log('Received a revalidation request...');
 
-  // 1. Verify the secret token
-  if (secret !== process.env.STRAPI_REVALIDATION_SECRET) {
+  const secret = request.headers.get('x-revalidation-token');
+
+  if (secret !== process.env.STRAPI_WEBHOOK_SECRET) {
+    console.error('Invalid secret token.');
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 });
   }
 
-  // 2. We don't need to parse the body, just revalidate all Strapi content
+//   const body = await request.json();
+
+//   // 2. Log the entire body to the console
+//   console.log('Full request body from Strapi:', body);
+//   const model = body.model;
+
+//   if (model === 'atoll-blog') {
+//     try {
+//       revalidateTag('atoll-blogs');
+//       console.log("Successfully revalidated tag: 'atoll-blogs'");
+//       return NextResponse.json({ revalidated: true, now: Date.now() });
+//     } catch (err) {
+//       console.error('Error revalidating tag:', err);
+//       return NextResponse.json({ message: "Error revalidating" }, { status: 500 });
+//     }
+//   }
+
+  const body = await request.json();
+  let revalidated = false;
+  let message = "Model not matched.";
+
   try {
-    revalidateTag('strapi');
-    return NextResponse.json({ revalidated: true, now: Date.now() });
+    if (body.model === 'atoll-blog') {
+      revalidateTag('atoll-blogs');
+      message = "Revalidated atoll-blogs";
+      revalidated = true;
+    } else if (body.model === 'gallery-image') {
+      revalidateTag('gallery-images');
+      message = "Revalidated gallery-images";
+      revalidated = true;
+    }
+    else if (body.model === 'atoll-product' || body.model === 'atoll-product-page') {
+      revalidateTag('products');
+      message = `Revalidated products due to change in ${body.model}`;
+      revalidated = true;
+    }
   } catch (err) {
-    return NextResponse.json({ message: 'Error revalidating', error: err.message }, { status: 500 });
+    console.error('Error during revalidation:', err);
+    message = "Revalidation failed.";
+    revalidated = false;
   }
+
+  return NextResponse.json({ revalidated, message, now: Date.now() });
 }

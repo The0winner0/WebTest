@@ -2,9 +2,10 @@
 
 
 import '../HomeCss/VideoPlayer.css';
-
+import IframeWrapper from './IframeWrapper';
 const Player = () => {
     return (
+        <IframeWrapper>
         <div className="video-container">
             <iframe
                 className="elementor-video"
@@ -14,8 +15,11 @@ const Player = () => {
                 frameBorder={0}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin" />
+                referrerPolicy="strict-origin-when-cross-origin"
+                data-lenis-prevent
+                 />
         </div>
+        </IframeWrapper>
     )
 }
 export default Player;

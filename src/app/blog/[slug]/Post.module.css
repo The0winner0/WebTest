@@ -57,7 +57,6 @@
   margin: 0 0.25rem;
 }
 
-/* Styles for content rendered from markdown */
 .contentWrapper h1,
 .contentWrapper h2,
 .contentWrapper h3,
@@ -95,7 +94,6 @@
   margin-bottom: 2rem;
 }
 
-/* Use :global() to style plain <img> tags inside the content wrapper */
 .contentWrapper :global(img) {
   width: 100%;
   max-width: 100%;
@@ -105,7 +103,6 @@
   border-radius: 8px;
 }
 
-/* Styles for the tags section */
 .tagsWrapper {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -128,12 +125,11 @@
   background-color: #ffffff;
   color: #000000;
   border-radius: 3px;
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   font-weight: 500;
   text-decoration: none;
 }
 
-/* Styles for the author box */
 .authorBox {
   margin-top: 4rem;
   padding: 2rem;
@@ -167,3 +163,123 @@
   text-decoration: none;
 }
 
+
+
+/* Share */
+
+/* /app/blog/[slug]/Post.module.css */
+
+.shareContainer {
+  display: flex;
+  gap: 12px;
+  margin: 30px 0;
+  padding: 10px 0;
+  background-color: white;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #f0f0f0; 
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.shareButton:hover {
+  opacity: 0.8;
+  background-color: #e0e0e0; 
+}
+
+.shareButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.twitter svg {
+  fill: #000000; 
+}
+
+.whatsapp svg {
+  fill: #25D366;
+}
+
+.mail svg {
+  fill: #777777;
+}
+
+
+/* ===================================
+   Mobile Responsive Styles
+   =================================== */
+
+@media (max-width: 600px) {
+  .articleWrapper {
+    margin: 2rem auto;
+    padding: 0.5rem 1rem;
+  }
+
+  .postTitle {
+    font-size: 2.25rem;
+  }
+
+  .metaLine {
+    margin-bottom: 2rem;
+  }
+
+  .contentWrapper h1,
+  .contentWrapper h2,
+  .contentWrapper h3,
+  .contentWrapper h4,
+  .contentWrapper h5,
+  .contentWrapper h6 {
+    font-size: 1.75rem;
+    margin-top: 2rem;
+  }
+
+  .authorBox {
+    flex-direction: column; 
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .authorImage {
+    width: 80px;
+    height: 80px;
+  }
+
+  .authorName {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .postTitle {
+    font-size: 1.8rem;
+  }
+
+  .contentWrapper h1,
+  .contentWrapper h2,
+  .contentWrapper h3,
+  .contentWrapper h4,
+  .contentWrapper h5,
+  .contentWrapper h6 {
+    font-size: 1.5rem;
+  }
+
+  .contentWrapper p,
+  .contentWrapper li,
+  .contentWrapper blockquote {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .tagItem {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.6rem;
+  }
+}

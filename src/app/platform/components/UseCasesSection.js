@@ -6,7 +6,7 @@ export default function UseCasesSection() {
             <h2 className="platform-heading">Scales Across Use Cases</h2>
             <div className="platform-use-cases-container">
                 <div className="platform-use-cases-image-wrapper">
-                    <Image
+                    <Image unoptimized={true} 
                         width="1800"
                         height="1062"
                         src={RouteMapImage}
