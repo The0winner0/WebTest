@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 import PlatformSection from './components/PlatformSection';
-import '../Css/platform.css';
+
 
 const sectionLoader = () => <div style={{ height: '400px', width: '100%' }} />;
 

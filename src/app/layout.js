@@ -1,6 +1,6 @@
 import { DM_Sans, Roboto } from 'next/font/google';
 import './globals.css';
-
+import './Css/platform.css';
 import './HomeCss/Navbar.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
