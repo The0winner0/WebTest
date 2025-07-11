@@ -1,7 +1,13 @@
 // src/lib/api.js
 
-export function getStrapiURL(path = "") {
-  return `${process.env.STRAPI_API_URL}${path}`;
+export function getStrapiURL(url='') {
+  if (url == null) {
+    return null;
+  }
+  if (url.startsWith('http') || url.startsWith('//')) {
+    return url;
+  }
+  return `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://127.0.0.1:1337'}${url}`;
 }
 
 export async function fetchAPI(path, options = {}) {
