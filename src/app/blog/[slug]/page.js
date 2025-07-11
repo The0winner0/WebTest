@@ -1,10 +1,8 @@
-// /app/blog/[slug]/page.js
-
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getAllPosts, getPostBySlug } from "../../lib/posts"; // Import server functions
+import { getAllPosts } from "../../lib/posts";
 import { getStrapiURL } from "../../lib/api";
 import BlogSuggestion from "../components/BlogSuggestion";
 import BlogIterator from "../components/BlogIterator";
@@ -13,8 +11,10 @@ import styles from "./Post.module.css";
 import "../../globals.css";
 import Logo from "../../../../public/images/Logo/atoll-solutions-5f6c56d5.webp";
 
+const allPostsPromise = getAllPosts();
+
 export async function generateStaticParams() {
-  const allPosts = await getAllPosts();
+  const allPosts = await allPostsPromise; 
   return allPosts.map((post) => ({
     slug: post.slug,
   }));
@@ -26,15 +26,16 @@ const createLink = (text) =>
 export default async function BlogPostPage({ params }) {
   const { slug } = params;
 
-  const currentPost = await getPostBySlug(slug);
-  const allPosts = await getAllPosts();
+  const allPosts = await allPostsPromise;
+
+  const currentPost = allPosts.find((post) => post.slug === slug);
+
   if (!currentPost) {
     notFound();
   }
 
   const getRelatedPosts = () => {
     const related = new Set();
-
     const otherPosts = allPosts.filter((p) => p.id !== currentPost.id);
 
     if (currentPost.tags && currentPost.tags.length > 0) {
@@ -122,7 +123,8 @@ export default async function BlogPostPage({ params }) {
             </ul>
           </div>
         )}
-        <div className={styles.shareContainer}>
+        
+         <div className={styles.shareContainer}>
           <a
             href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
               shareUrl

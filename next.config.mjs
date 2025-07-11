@@ -11,7 +11,14 @@ const strapiUrl = new URL(strapiUrlString);
 
 const nextConfig = {
   images: {
+    
     remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
       {
         protocol: strapiUrl.protocol.replace(':', ''),
         hostname: strapiUrl.hostname,                   

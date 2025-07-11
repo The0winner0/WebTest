@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react"; 
 import { getPostsBySlugs } from "./lib/posts";
 import Hero from "./components/Hero";
 import Partners from "./components/Partners";
@@ -10,7 +10,7 @@ import InsightsSection from "./components/InsightsSection";
 
 export default async function HomePage() {
   const slugsToShow = [
-    "first",
+    "location-tracking-in-logistics-with-kinesis-rtls",
     "real-time-location-tracking-in-healthcare-enhancing-efficiency-patient-care",
   ];
   const featuredPosts = await getPostsBySlugs(slugsToShow);
@@ -24,7 +24,9 @@ export default async function HomePage() {
       <VideoPlayer />
       <InsightsSection />
       <div style={{ width: "87%", margin: "0 auto" }}>
-        <BlogGrid posts={featuredPosts} />
+        <Suspense fallback={<div>Loading featured posts...</div>}>
+          <BlogGrid posts={featuredPosts} />
+        </Suspense>
       </div>
     </div>
   );
