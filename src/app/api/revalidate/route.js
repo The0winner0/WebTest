@@ -6,7 +6,14 @@ export async function POST(request) {
   console.log('Received a revalidation request...');
 
   const secret = request.headers.get('x-revalidation-token');
-
+  if(secret === null) {
+    console.error('No secret token provided in the request headers.');
+    return NextResponse.json({ message: 'Missing secret token' }, { status: 401 });
+  }
+  if(!process.env.STRAPI_WEBHOOK_SECRET) {
+    console.error('Environment variable STRAPI_WEBHOOK_SECRET is not defined.');
+    return NextResponse.json({ message: 'Missing STRAPI_WEBHOOK_SECRET' }, { status: 500 });
+  }
   if (secret !== process.env.STRAPI_WEBHOOK_SECRET) {
     console.error('Invalid secret token.');
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 });
