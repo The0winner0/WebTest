@@ -180,3 +180,33 @@ body {
 
 
 
+
+
+svg {
+  transform-origin: center;
+  transition: transform 0.2s ease-out;
+  animation: jiggle-out 0.6s ease-out;
+}
+
+svg:hover {
+  transform: scale(1.2);
+  animation: none; 
+}
+
+@keyframes jiggle-out {
+  0% {
+    transform: scale(1.15); 
+  }
+  30% {
+    transform: scale(0.90);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  85% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

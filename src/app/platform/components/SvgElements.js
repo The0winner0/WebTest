@@ -70,7 +70,7 @@ const iconBoxData = [
   {
     id: 'acTag',
     iconPath: "M3 20h18v1.5h-18z M4 18h4v-5h-4z M10 18h4v-9h-4z M16 18h4v-13h-4z",
-    viewBox: "0 0 32 32",
+    viewBox: "0 -5 25 30",
     title: "AcTag",
     description: "BLE/UWB Cellular tags for remote tracking",
   },
