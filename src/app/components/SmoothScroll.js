@@ -36,6 +36,7 @@ const SmoothScrollLayout = ({ children }) => {
         ro.observe(doc);
 
         const update = () => {
+            setScrollValues({ current: currentRef.current, upcoming: targetRef.current });
             currentRef.current += (targetRef.current - currentRef.current) * ease;
             doc.scrollTo(0, Math.round(currentRef.current)); 
 
@@ -60,7 +61,7 @@ const SmoothScrollLayout = ({ children }) => {
         const onWheel = (e) => {
             // console.log("a");
             if(isMouseOverIframe.current) return;
-
+            setScrollValues({ current: currentRef.current, upcoming: targetRef.current });
             if(!current){
                 current = 1;
                 targetRef.current = window.scrollY;
@@ -102,7 +103,7 @@ const SmoothScrollLayout = ({ children }) => {
              if (delta) {
                  targetRef.current += delta;
              }
-             
+             setScrollValues({ current: currentRef.current, upcoming: targetRef.current });
              targetRef.current = Math.max(0, Math.min(targetRef.current, bodyHeight - window.innerHeight));
              startAnimation();
         };

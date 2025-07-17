@@ -4,14 +4,15 @@
 .hero-container {
   width: 100%;
   max-width: 1200px;
-  height: auto;
+  height: 300px;
+  /* height: auto; */
   margin: 20px auto 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   position: relative;
-      
+  
 }
 
 .background-img {
@@ -78,6 +79,7 @@
   margin-right: auto;
 }
 
+
 .button {
   position: relative; 
   display: inline-block;
@@ -92,11 +94,13 @@
   overflow: hidden; 
   transition: background-color 0.2s ease;
   z-index: 1; 
+  text-decoration-color: #fff;
 }
 
 .button span {
   display: inline-block; 
   transition: transform 0.2s ease-in-out;
+  color: #fff;
 }
 
 .button::before {
@@ -121,6 +125,7 @@
 
 .button:hover span {
   transform: scale(0.9);
+  color: black;
 }
 
 .button:hover::before {

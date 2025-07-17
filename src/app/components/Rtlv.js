@@ -1,59 +1,28 @@
 import FadeInSection from './FadeInSection';
 import '../HomeCss/HomeLocation.css';
 
-const rtlvCardData = [
-    {
-        id: 1,
-        title: 'Increased Profitability',
-        text: 'through increased product quality and reliability e.g. a logistics company can get timely alerts about the location and condition of their deliveries, and provide a better service to their customers',
-        delay: 300,
-        rowClass: 'rtlv__feature-card-first-row'
-    },
-    {
-        id: 2,
-        title: 'Improved Efficiency',
-        text: 'by optimising their processes using reliable location information e.g. a factory can track work items at various stages of production, and identify and address bottlenecks.',
-        delay: 400,
-        rowClass: 'rtlv__feature-card-first-row'
-    },
-    {
-        id: 3,
-        title: 'Safer Environment',
-        text: 'through access control for people and geofencing of assets e.g. visitors can be restricted to access only specific areas of a plant, with an alert being sent if they approach a hazardous area.',
-        delay: 500,
-        rowClass: 'rtlv__feature-card-second-row'
-    }
-];
-const KinesisPlatformSection = () => {
-  return (
-    <div className="kinesis-platform-container">
-      <div className="kinesis-inner-container">
-
-        <div className="kinesis-heading-wrapper">
-          <div className="kinesis-heading-widget">
-            <div className="kinesis-widget-container">
-              <h2 className="kinesis-heading">
-                Kinesis : A Sensor-to-API Platform
-              </h2>
+const KinesisPlatformSection = ({ title, description }) => {
+    return (
+        <div className="kinesis-platform-container">
+            <div className="kinesis-inner-container">
+                <div className="kinesis-heading-wrapper">
+                    <div className="kinesis-heading-widget">
+                        <div className="kinesis-widget-container">
+                            <h2 className="kinesis-heading">{title}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div className="kinesis-text-wrapper">
+                    <div className="kinesis-text-widget">
+                        <div className="kinesis-widget-container">
+                            <p className="kinesis-paragraph">{description}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div className="kinesis-text-wrapper">
-          <div className="kinesis-text-widget">
-            <div className="kinesis-widget-container">
-              <p className="kinesis-paragraph">
-                Imagine a world where misplaced assets are a distant memory, employee safety is at your fingertips, and your operations runs like a well oiled machine, all thanks to instant location visibility.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  );
+    );
 };
-
 
 const RtlvCard = ({ id, title, text, delay, rowClass }) => (
     <div className={`rtlv__feature-card rtlv__feature-card-${id} ${rowClass}`}>
@@ -64,30 +33,51 @@ const RtlvCard = ({ id, title, text, delay, rowClass }) => (
     </div>
 );
 
-const Rtlv = () => {
+const Rtlv = ({ data }) => {
+    const { kinesisTitle, kinesisDescription, rtlvTitle, rtlvFeatures } = data;
+
+    // Split features for layout assuming there will always be 3
+    const firstRowFeatures = rtlvFeatures.slice(0, 2);
+    const secondRowFeatures = rtlvFeatures.slice(2);
+
     return (
         <main className="rtlv__container">
-        <KinesisPlatformSection />
-        <section className="rtlv">
-            <div className="rtlv__inner">
-                <div className="rtlv__header">
-                    <span className="rtlv__icon" aria-hidden="true" />
-                    <h2 className="rtlv__heading">
-                        Real Time Location Visibility. Kinesis gives you the <br/> 'where' and 'how' <br/> for your people<br/> and<br/> assets
-                    </h2>
-                </div>
-                <div className="rtlv__features">
-                    <div className="rtlv__features-first-row">
-                        {rtlvCardData.slice(0, 2).map(card => (
-                            <RtlvCard key={card.id} {...card} />
+            <KinesisPlatformSection title={kinesisTitle} description={kinesisDescription} />
+            <section className="rtlv">
+                <div className="rtlv__inner">
+                    <div className="rtlv__header">
+                        <span className="rtlv__icon" aria-hidden="true" />
+                        <h2 
+                            className="rtlv__heading"
+                            dangerouslySetInnerHTML={{ __html: rtlvTitle.replace(/\n/g, '<br />') }}
+                        />
+                    </div>
+                    <div className="rtlv__features">
+                        <div className="rtlv__features-first-row">
+                            {firstRowFeatures.map((card, index) => (
+                                <RtlvCard 
+                                    key={card.id} 
+                                    id={card.id}
+                                    title={card.title}
+                                    text={card.description}
+                                    delay={300 + index * 100}
+                                    rowClass="rtlv__feature-card-first-row"
+                                />
+                            ))}
+                        </div>
+                        {secondRowFeatures.map((card, index) => (
+                            <RtlvCard 
+                                key={card.id} 
+                                id={card.id}
+                                title={card.title}
+                                text={card.description}
+                                delay={500 + index * 100}
+                                rowClass="rtlv__feature-card-second-row"
+                            />
                         ))}
                     </div>
-                    {rtlvCardData.slice(2).map(card => (
-                         <RtlvCard key={card.id} {...card} />
-                    ))}
                 </div>
-            </div>
-        </section>
+            </section>
         </main>
     );
 };

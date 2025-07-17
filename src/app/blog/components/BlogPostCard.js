@@ -41,11 +41,11 @@ const BlogPostCard = ({ post }) => {
       </div>
 
       <div className={styles.blogPageCardContent}>
-        <h2 className={styles.blogPageCardTitle}>
+        <p className={styles.blogPageCardTitle}>
            <Link href={post.href} onClick={handleNestedLinkClick}>
             {post.title}
           </Link>
-        </h2>
+        </p>
         <div className={styles.blogPageCardMeta}>
           <span className="blog-page-card-author">
             By{' '}

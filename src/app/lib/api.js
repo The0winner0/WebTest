@@ -4,9 +4,9 @@ export function getStrapiURL(url='') {
   if (url == null) {
     return null;
   }
-  if (url.startsWith('http') || url.startsWith('//')) {
-    return url;
-  }
+  // if (url.startsWith('http') || url.startsWith('//')) {
+  //   return url;
+  // }
   return `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://127.0.0.1:1337'}${url}`;
 }
 

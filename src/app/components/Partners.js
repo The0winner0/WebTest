@@ -3,52 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import '../HomeCss/Partners.css';
-
-import hpeArubaLogo from '../../../public/images/HPW-Aruba.png';
-import qualcommLogo from '../../../public/images/Qualcomm.png';
-import nxpLogo from '../../../public/images/NXP.png';
-import wirepasLogo from '../../../public/images/Wirepass.png';
-import ciscoLogo from '../../../public/images/Cisco.png';
-import firaLogo from '../../../public/images/Fira.png';
-
-const partnersData = [
-    {
-        id: 1,
-        name: 'HPE Aruba',
-        imageUrl: hpeArubaLogo,
-        linkUrl: 'https://www.arubanetworks.com/partners/technology-partners/partner-finder/#keyword=atoll%20solutions',
-    },
-    {
-        id: 2,
-        name: 'Qualcomm',
-        imageUrl: qualcommLogo,
-        linkUrl: 'https://www.qualcomm.com/support/qan/member-directory/member.atoll-solutions-private-ltd',
-    },
-    {
-        id: 3,
-        name: 'NXP',
-        imageUrl: nxpLogo,
-        linkUrl: 'https://www.nxp.com/webapp/connect/displayPartnerProfile.sp?partnerId=17420&offeringId=19561',
-    },
-    {
-        id: 4,
-        name: 'Wirepas',
-        imageUrl: wirepasLogo,
-        linkUrl: 'https://www.wirepas.com/partner-products',
-    },
-    {
-        id: 5,
-        name: 'Cisco',
-        imageUrl: ciscoLogo,
-        linkUrl: 'https://developer.cisco.com/ecosystem/cpp/partners/192283/',
-    },
-    {
-        id: 6,
-        name: 'Fira Consortium',
-        imageUrl: firaLogo,
-        linkUrl: 'https://www.firaconsortium.org/about/members',
-    },
-];
+import { getStrapiURL } from '../lib/api';
 
 const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(false);
@@ -69,9 +24,9 @@ const useMediaQuery = (query) => {
 
 const PartnerScroller = ({ items }) => {
     const [isPaused, setIsPaused] = useState(false);
-    const shouldAnimate = useMediaQuery(`(max-width: ${partnersData.length * 200}px)`);
+    const shouldAnimate = useMediaQuery(`(max-width: ${items?.length * 200}px)`);
 
-    const displayItems = shouldAnimate ? [...items, ...items] : items;
+    const displayItems = shouldAnimate ? [...(items || []), ...(items || [])] : items;
 
     return (
         <div
@@ -80,39 +35,52 @@ const PartnerScroller = ({ items }) => {
             onMouseLeave={() => setIsPaused(false)}
         >
             <div className={`scroller-content ${shouldAnimate ? 'animate' : 'static-grid'} ${isPaused ? 'paused' : ''}`}>
-                {displayItems.map((item, index) => (
-                    <a
-                        key={index}
-                        href={item.linkUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={item.name}
-                        className="partner-logo-link"
-                    >
-                        <Image unoptimized={true} 
-                            src={item.imageUrl}
-                            alt={`${item.name} Logo`}
-                            width={160}
-                            height={80}
-                            style={{ objectFit: "contain" }}
-                            className="partner-logo"
-                        />
-                    </a>
-                ))}
+                {displayItems?.map((item, index) => {
+                    // Access .url and .alternativeText directly from item.logo
+                    const imageUrl = getStrapiURL(item.logo[0].url);
+                    const imageAlt = item.logo?.alternativeText || `${item.name} Logo`;
+
+                    if (!imageUrl) return null; // Don't render if there's no image
+
+                    return (
+                        <a
+                            key={`${item.id}-${index}`}
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={item.name}
+                            className="partner-logo-link"
+                        >
+                            <Image 
+                                unoptimized={true} 
+                                src={imageUrl}
+                                alt={imageAlt}
+                                width={160}
+                                height={80}
+                                style={{ objectFit: "contain" }}
+                                className="partner-logo"
+                            />
+                        </a>
+                    );
+                })}
             </div>
         </div>
     );
 };
 
-const Partners = () => {
+const Partners = ({ data }) => {
+    if (!data) return null;
+    
+    const { partnersTitle, partners } = data;
+    console.log("Partners Data:", data.partners[0].logo[0].url);
     return (
         <div className="Partners-container">
             <p className="Partners__title">
-                We’ve deployed over 25 projects in partnership with technology leaders
+                {partnersTitle}
             </p>
-            <PartnerScroller items={partnersData} />
+            <PartnerScroller items={partners} />
         </div>
     );
-};
+}; 
 
 export default Partners;

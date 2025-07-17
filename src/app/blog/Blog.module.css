@@ -18,7 +18,8 @@
 
 .blogPageTitle {
   font-size: 4rem;
-  font-weight: 400;
+  /* FIX: Decreased font weight for the title */
+  font-weight: 300;
   color: #111;
   max-width: 70%;
   text-align: center;
@@ -27,7 +28,7 @@
 
 .blogPageGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
@@ -70,7 +71,8 @@
   width: 100%;
   height: 100%;
   border-radius: 2px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.85) 100%);
+  /* FIX: Increased the darkness behind the title */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
   z-index: 1;
 }
 
@@ -113,10 +115,11 @@
 .blogPageCardTitle a {
   color: #ffffff;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
   line-height: 1.3;
   transition: color 0.3s;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
 }
 
 .blogPageCardTitle a:hover {
@@ -157,11 +160,13 @@
 }
 
 .blogPageSpacer {
-   
+  height: 2rem;
 }
 
+/* FIX: Responsive adjustments for tablets and smaller desktops */
 @media (max-width: 900px) {
   .blogPageGrid {
+    /* FIX: Ensure one column layout on smaller screens */
     grid-template-columns: 1fr;
     max-width: 80%;
     margin: 0 auto;
@@ -223,44 +228,39 @@
 
 @media (max-width: 400px) {
   .blogPageContainer {
-    padding: 1rem 0.25rem; 
+    padding: 1rem 0.25rem;
   }
 
   .blogPageHeader {
-    padding: 1rem 0; 
+    padding: 1rem 0;
   }
 
   .blogPageGrid {
-    gap: 0.5rem; 
+    gap: 0.5rem;
   }
-  
+
   .blogPageTitle {
     font-size: 1.8rem;
     max-width: 95%;
   }
 
   .blogPageCardContent {
-    padding: 10px; 
+    padding: 10px;
   }
 
   .blogPageCardTitle a {
     font-size: 1rem;
-    line-height: 0.8; 
+    line-height: 1.1;
   }
 
   .blogPageCardMeta {
     font-size: 0.7rem;
     gap: 8px;
     margin-top: 5px;
-    line-height: 0.8;
-  }
-  .blogPageCardMeta {
     opacity: 1;
   }
+
   .blogPageCard:hover .blogPageCardTitle {
     transform: translateY(0);
-  }
-  .blogPageCard:hover .blogPageCardMeta {
-    opacity: 1;
   }
 }

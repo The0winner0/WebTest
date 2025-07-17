@@ -1,20 +1,13 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import '../HomeCss/Hero.css';
-import backgroundImgDesktop from '../../../public/images/Featured-Image-scaled.webp';
-import backgroundImgMobile from '../../../public/images/Featured-Image-Mobile34.webp';
-import pinImg from '../../../public/images/Pin.png';
-
-const pins = [
-    { top: '10%', left: '30%' },
-    { top: '45%', left: '33%' },
-    { top: '12%', left: '53%' },
-    { top: '50%', left: '43%' },
-    { top: '44%', left: '83%' },
-];
+import { getStrapiURL } from '../lib/api';
+import pinImg from '../../../public/images/Pin.png'; 
 
 const Pin = ({ style }) => (
     <div className="pin" style={style}>
-        <Image unoptimized={true}  
+        <Image 
+            unoptimized={true}   
             src={pinImg}
             alt="map pin" 
             width={34} 
@@ -23,38 +16,63 @@ const Pin = ({ style }) => (
     </div>
 );
 
-const Hero = () => {
+const Hero = ({ data }) => {
+    // Add a check in case data is missing
+    if (!data) return null;
+
+    const {
+        heroTitleLine1,
+        heroTitleGradient,
+        heroDescription,
+        heroButtonText,
+        heroButtonLink,
+        heroBackgroundImageDesktop,
+        heroBackgroundImageMobile,
+        heroMapPins
+    } = data;
+
+    // Access the URL and alt text directly, with optional chaining (?.) for safety
+    const desktopImageUrl = getStrapiURL(heroBackgroundImageDesktop?.url);
+    
+    const mobileImageUrl = getStrapiURL(heroBackgroundImageMobile?.url);
+    const desktopImageAlt = heroBackgroundImageDesktop?.alternativeText || 'Location intelligence map';
+    const mobileImageAlt = heroBackgroundImageMobile?.alternativeText || 'Location intelligence map';
+    // console.log('DATA RECEIVED BY HERO COMPONENT:', JSON.stringify(data, null, 2));
     return (
         <section className="hero-section">
             <div className="hero-container">
-                <Image unoptimized={true} 
-                    src={backgroundImgDesktop}
-                    alt="Location intelligence map"
-                    width={1536}
-                    height={496}
-                    className="background-img background-img--desktop"
-                    priority
-                />
-                <Image unoptimized={true} 
-                    src={backgroundImgMobile}
-                    alt="Location intelligence map"
-                    width={461}
-                    height={487}
-                    className="background-img background-img--mobile"
-                    priority
-                />
-                {pins.map((pin, index) => (
-                    <Pin key={index} style={pin} />
+                {desktopImageUrl && (
+                    <Image 
+                        unoptimized={true} 
+                        src={desktopImageUrl}
+                        alt={desktopImageAlt}
+                        fill
+                        className="background-img background-img--desktop"
+                        priority
+                    />
+                )}
+                {mobileImageUrl && (
+                    <Image 
+                        unoptimized={true} 
+                        src={mobileImageUrl}
+                        alt={mobileImageAlt}
+                        fill
+                        className="background-img background-img--mobile"
+                        priority
+                    />
+                )}
+                {heroMapPins?.map((pin) => (
+                    <Pin key={pin.id} style={{ top: pin.topPosition, left: pin.leftPosition }} />
                 ))}
             </div>
             <div className="hero-text-section">
                 <div className="container">
-                    <h1 className="title-large">Making Location Intelligence</h1>
-                    <h1 className="title-gradient">Precise &amp; Ubiquitous</h1>
-                    <p className="description">
-                        We provide reliable and real-time location visibility with our scalable end-to-end IoT platform. <br /> Get in touch to see how it can help you implement your digital transformation.
-                    </p>
-                    <button className="button" href="/contact"><span>Book a Demo</span></button>
+                    <h1 className="title-large">{heroTitleLine1}</h1>
+                    <h1 className="title-gradient">{heroTitleGradient}</h1>
+                    <p className="description" dangerouslySetInnerHTML={{ __html: heroDescription?.replace(/\n/g, '<br />') }} />
+                    <Link href={heroButtonLink || '/contact'} className="button">
+                        <span>{heroButtonText}</span>
+                    </Link>
                 </div>
             </div>
         </section>

@@ -24,8 +24,8 @@ export default function BlogProgressBar() {
     };
   }, []);
 
-  const upcomingProgress = scrollTotal > 0 ? (upcoming / scrollTotal) * 100 : 0;
-  const currentProgress = scrollTotal > 0 ? (current / scrollTotal) * 100 : 0;
+  const upcomingProgress = (scrollTotal-300) > 0 ? (upcoming / (scrollTotal-300)) * 100 : 0;
+  const currentProgress = (scrollTotal-300) > 0 ? (current / (scrollTotal-300)) * 100 : 0;
 
   return (
     <div className={styles['blog-progress-container']}>
