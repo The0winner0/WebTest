@@ -92,7 +92,7 @@ const Navbar = () => {
                         <div className="navbar__extras">
                             <div className="social-icons">
                                 {socialLinks.map((social) => (
-                                    <a key={social.label} href={social.href} className={`social-icons__link social-icons__${social.label}`} aria-label={social.label} target="_blank" rel="noopener noreferrer">
+                                    <a key={social.label} href={social.href} className={`social-icons__link social-icons__${social.label} hover-bounce`} aria-label={social.label} target="_blank" rel="noopener noreferrer">
                                         {social.icon}
                                     </a>
                                 ))}

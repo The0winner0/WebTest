@@ -24,7 +24,7 @@ const InsightsSection = ({ data }) => {
                   <span className="insights-section-button-icon">
                     <svg
                       aria-hidden="true"
-                      viewBox="0 0 512 512"
+                      viewBox="10 10 512 512"
                       xmlns="http://www.w3.org/2000/svg"
                       className="insights-section-button-svg"
                     >

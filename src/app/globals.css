@@ -57,6 +57,7 @@ body {
   justify-content: center;
   gap: 8rem;
   align-items: flex-start;
+  /* max-width: 1200px; */
 }
 
 .footer-grid {
@@ -132,6 +133,14 @@ body {
   text-align: center;
 }
 
+
+
+.home-page-blog-grid {
+  width: 87%;
+  max-width: 1280px; 
+  margin: 0 auto;
+}
+
 /*--------------------------------------------------------------
 8. Media Queries (Business & Footer)
 --------------------------------------------------------------*/
@@ -143,6 +152,8 @@ body {
   max-width: 800px;
   margin-left: 1rem;
 }
+
+
 
 @media (min-width: 1100px) {
   .footer-grid {
@@ -182,31 +193,43 @@ body {
 
 
 
-svg {
+.hover-bounce {
   transform-origin: center;
   transition: transform 0.2s ease-out;
   animation: jiggle-out 0.6s ease-out;
 }
 
-svg:hover {
+.hover-bounce:hover {
   transform: scale(1.2);
   animation: none; 
 }
 
 @keyframes jiggle-out {
   0% {
-    transform: scale(1.15); 
+    transform: scale(1.08); 
   }
   30% {
-    transform: scale(0.90);
+    transform: scale(0.94);
   }
   60% {
-    transform: scale(1.1);
+    transform: scale(1.04);
   }
   85% {
-    transform: scale(0.95);
+    transform: scale(0.98);
   }
   100% {
     transform: scale(1);
   }
+}
+
+
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-footer {
+  margin-top: auto;
 }

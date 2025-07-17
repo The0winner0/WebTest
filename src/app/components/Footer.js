@@ -50,7 +50,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <>
+        <footer className="site-footer">
             <div className="footer-container">
                 <FadeInSection delay={10}>
                     <div className="footer-logo-container">
@@ -64,12 +64,13 @@ const Footer = () => {
                     ))}
                 </div>
             </div>
-            <footer className="footer" style={{ borderTop: '0.1px solid #ccc', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
+            
+            <div className="footer" style={{ borderTop: '0.1px solid #ccc', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
                 <div className="container">
                     <p>&copy; {currentYear} Atoll Solutions Private Limited</p>
                 </div>
-            </footer>
-        </>
+            </div>
+        </footer>
     );
 };
 

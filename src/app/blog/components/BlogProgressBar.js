@@ -5,7 +5,6 @@ import styles from '../BlogPost.module.css';
 
 export default function BlogProgressBar() {
   const { current, upcoming } = useContext(ScrollVariables);
-
   const [scrollTotal, setScrollTotal] = useState(0);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ export default function BlogProgressBar() {
     updateScrollTotal();
     window.addEventListener('resize', updateScrollTotal);
     const observer = new MutationObserver(updateScrollTotal);
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
 
     return () => {
       window.removeEventListener('resize', updateScrollTotal);
@@ -24,8 +23,11 @@ export default function BlogProgressBar() {
     };
   }, []);
 
-  const upcomingProgress = (scrollTotal-300) > 0 ? (upcoming / (scrollTotal-300)) * 100 : 0;
-  const currentProgress = (scrollTotal-300) > 0 ? (current / (scrollTotal-300)) * 100 : 0;
+  const progressOffset = 700;
+  const adjustedScrollTotal = scrollTotal - progressOffset > 0 ? scrollTotal - progressOffset : 1;
+
+  const upcomingProgress = (upcoming / adjustedScrollTotal) * 100;
+  const currentProgress = (current / adjustedScrollTotal) * 100;
 
   return (
     <div className={styles['blog-progress-container']}>

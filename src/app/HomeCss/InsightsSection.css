@@ -66,7 +66,9 @@
   background: rgb(0, 198, 221);
   color:black;
 }
-
+.insights-section-button-text{
+  margin-top: 1px;
+}
 .insights-section-button-content {
   display: flex;
   align-items: center;
@@ -82,6 +84,20 @@
   height: 20px;
   fill: currentColor;
 }
+.insights-section-button .insights-section-button-content {
+    /* display: inline-block; */
+    transition: transform 0.2s ease-in-out;
+}
+
+.insights-section-button:hover .insights-section-button-content {
+    transform: scale(0.9);
+}
+
+.insights-section-button:hover {
+    background: #00c6dd;
+    color: black;
+}
+
 
 @media (min-width: 768px) {
   .insights-section-column {

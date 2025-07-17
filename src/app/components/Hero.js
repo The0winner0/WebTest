@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import '../HomeCss/Hero.css';
 import { getStrapiURL } from '../lib/api';
-import pinImg from '../../../public/images/Pin.png'; 
+import pinImg from '../../../public/images/Pin.png';
 
 const Pin = ({ style }) => (
     <div className="pin" style={style}>
@@ -16,8 +16,8 @@ const Pin = ({ style }) => (
     </div>
 );
 
+
 const Hero = ({ data }) => {
-    // Add a check in case data is missing
     if (!data) return null;
 
     const {
@@ -31,16 +31,26 @@ const Hero = ({ data }) => {
         heroMapPins
     } = data;
 
-    // Access the URL and alt text directly, with optional chaining (?.) for safety
-    const desktopImageUrl = getStrapiURL(heroBackgroundImageDesktop?.url);
-    
-    const mobileImageUrl = getStrapiURL(heroBackgroundImageMobile?.url);
-    const desktopImageAlt = heroBackgroundImageDesktop?.alternativeText || 'Location intelligence map';
-    const mobileImageAlt = heroBackgroundImageMobile?.alternativeText || 'Location intelligence map';
-    // console.log('DATA RECEIVED BY HERO COMPONENT:', JSON.stringify(data, null, 2));
+    const desktopImage = heroBackgroundImageDesktop;
+    const mobileImage = heroBackgroundImageMobile;
+
+    const desktopImageUrl = getStrapiURL(desktopImage?.url);
+    const mobileImageUrl = getStrapiURL(mobileImage?.url);
+    const desktopImageAlt = desktopImage?.alternativeText || 'Location intelligence map';
+    const mobileImageAlt = mobileImage?.alternativeText || 'Location intelligence map';
+
+    const containerStyle = {
+        '--desktop-aspect-ratio': (desktopImage?.width && desktopImage?.height)
+            ? `${desktopImage.width} / ${desktopImage.height}`
+            : '16 / 9',
+        '--mobile-aspect-ratio': (mobileImage?.width && mobileImage?.height)
+            ? `${mobileImage.width} / ${mobileImage.height}`
+            : '3 / 4' 
+    };
+
     return (
         <section className="hero-section">
-            <div className="hero-container">
+            <div className="hero-container" style={containerStyle}>
                 {desktopImageUrl && (
                     <Image 
                         unoptimized={true} 

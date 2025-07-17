@@ -139,6 +139,7 @@ export default async function BlogPostPage({ params }) {
               width="24"
               height="24"
               viewBox="0 0 24 24"
+              className="hover-bounce"
             >
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
@@ -159,6 +160,7 @@ export default async function BlogPostPage({ params }) {
               width="200"
               height="200"
               viewBox="4 5 38 38"
+              className="hover-bounce"
             >
               <path
                 fill="#fff"
@@ -196,6 +198,7 @@ export default async function BlogPostPage({ params }) {
               width="24"
               height="24"
               viewBox="0 0 24 24"
+              className="hover-bounce"
             >
               <path d="M0 4v16h24V4zm21.999 1.5L12 11.75 2.001 5.5zM1.5 18V6.852l10.5 6.433 10.5-6.433V18z" />
             </svg>

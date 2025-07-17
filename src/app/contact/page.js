@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useReducer } from 'react';
 import PageHeading from '../components/PageHeading';
 import '../style/Contact.css';
-
+import { getContactPageData } from '../lib/contact';
 const useIntersectionObserver = (options) => {
     const containerRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
@@ -31,13 +31,9 @@ const useIntersectionObserver = (options) => {
     return [containerRef, isVisible];
 };
 
-
 const AnimatedWrapper = ({ children, animationClass, delay = 0 }) => {
     const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
-
-    const style = {
-        transitionDelay: `${delay}ms`,
-    };
+    const style = { transitionDelay: `${delay}ms` };
 
     return (
         <div ref={ref} style={style} className={`${animationClass} ${isVisible ? 'is-visible' : ''}`}>
@@ -45,7 +41,6 @@ const AnimatedWrapper = ({ children, animationClass, delay = 0 }) => {
         </div>
     );
 };
-
 const contactDetails = [
     {
         icon: (
@@ -83,16 +78,20 @@ const contactDetails = [
     },
 ];
 
-const InfoCard = ({ icon, title, content }) => (
+const InfoCard = ({ iconSvg, title, content }) => (
     <div className="info-card">
         <div className="info-card__icon-wrapper">
-            <div className="info-card__icon-bg">
-                {icon}
-            </div>
+            <div
+                className="info-card__icon-bg"
+                dangerouslySetInnerHTML={{ __html: iconSvg }}
+            />
         </div>
         <p className="info-card__title">{title}</p>
-        <p className="info-card__content">{content}</p>
-    </div>
+        <div
+            className="info-card__content"
+            dangerouslySetInnerHTML={{ __html: content }}
+        />
+    </div> 
 );
 
 
@@ -226,44 +225,52 @@ const ContactForm = () => {
         </section>
     );
 };
-export default function ContactPage() {
+export default async function ContactPage() {
+    const pageData = await getContactPageData();
+
+    if (!pageData) {
+        return <p>Contact information could not be loaded.</p>; // Or a proper error component
+    }
+
+    const { heroHeading, heroParagraph, contactDetails } = pageData;
+
     return (
         <div className="contact-page">
-        <main className="page-wrapper">
-            <section className="hero-section">
-                <div className="container">
-                    <PageHeading title="Contact" />
-                    <h1 className="hero-section__heading">
-                        Get in touch
-                    </h1>
-                    <p className="hero-section__paragraph">
-                        Contact us today! Our team of experts is eager to discuss your specific needs and design a customized RTLS solution that empowers you.
-                    </p>
-                </div>
-            </section>
-
-            <div className="spacer"></div>
-
-            <section className="form-section">
-                <div className="container">
-                    <div className="form-container">
-                        <ContactForm />
+            <main className="page-wrapper">
+                <section className="hero-section">
+                    <div className="container">
+                        <PageHeading title="Contact" />
+                        <h1 className="hero-section__heading">{heroHeading}</h1>
+                        <p className="hero-section__paragraph">{heroParagraph}</p>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className="info-section">
-                <div className="container">
-                    <div className="info-grid">
-                        {contactDetails.map((detail, index) => (
-                            <AnimatedWrapper key={index} animationClass={detail.animation} delay={detail.delay}>
-                                <InfoCard icon={detail.icon} title={detail.title} content={detail.content} />
-                            </AnimatedWrapper>
-                        ))}
+                <div className="spacer"></div>
+
+                <section className="form-section">
+                    <div className="container">
+                        <div className="form-container">
+                            <ContactForm />
+                        </div>
                     </div>
-                </div>
-            </section>
-        </main>
+                </section>
+
+                <section className="info-section">
+                    <div className="container">
+                        <div className="info-grid">
+                            {contactDetails?.map((detail, index) => (
+                                <AnimatedWrapper key={index} animationClass={detail.animationClass} delay={detail.delay}>
+                                    <InfoCard
+                                        iconSvg={detail.iconSvg}
+                                        title={detail.title}
+                                        content={detail.content}
+                                    />
+                                </AnimatedWrapper>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
     );
 }

@@ -30,6 +30,14 @@ export async function POST(request) {
       revalidateTag('products');
       message = `Revalidated products due to change in ${body.model}`;
       revalidated = true;
+    } else if (body.model === 'platform-page') {
+      revalidateTag('platform-page');
+      message = "Revalidated platform-page";
+      revalidated = true;
+    } else if (body.model === 'contact-page') {
+      revalidateTag('contact-page');
+      message = 'Revalidated contact-page';
+      revalidated = true;
     }
   } catch (err) {
     console.error('Error during revalidation:', err);

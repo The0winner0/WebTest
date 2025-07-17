@@ -27,20 +27,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  
-
   return (
-    
     <html lang="en" className={`${dm_sans.variable} ${roboto.variable}`}>
-      
       <body className="font-roboto">
-        <Navbar />
-        <PageTransitionWrapper>
-        <SmoothScrollLayout>
-        <main>{children}</main>
-        </SmoothScrollLayout>
-        </ PageTransitionWrapper>
-        <Footer />
+        <div className="page-wrapper">
+          <Navbar />
+          <PageTransitionWrapper>
+            <SmoothScrollLayout>
+              <main>{children}</main>
+            </SmoothScrollLayout>
+            <Footer />
+          </PageTransitionWrapper>
+        </div>
       </body>
     </html>
   );

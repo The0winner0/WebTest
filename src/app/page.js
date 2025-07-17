@@ -2,9 +2,7 @@
 
 import React, { Suspense } from "react";
 import { getHomepageData } from "./lib/homepage";
-import { getPostsBySlugs } from "./lib/posts"; // Your function to fetch posts by slug
-
-// Import your UI components
+import { getPostsBySlugs } from "./lib/posts"; 
 import Hero from "./components/Hero";
 import Partners from "./components/Partners";
 import BusinessVerticals from "./components/BusinessVerticals";
@@ -25,15 +23,12 @@ export default async function HomePage() {
     );
   }
 
-  // 1. Extract the array of slugs from the homepage data
   const slugsToShow = homepageData.featuredPostSlugs?.map(item => item.slug) || [];
 
-  // 2. Fetch the blog posts using those slugs
   const featuredPosts = await getPostsBySlugs(slugsToShow);
 
   return (
     <div>
-      {/* Each prop name (e.g., `heroSection`) should match the field name in your CMS */}
       <Hero data={homepageData.heroSection} />
       <Partners data={homepageData.partnersSection} />
       <BusinessVerticals data={homepageData.verticalsSection} />
@@ -41,7 +36,7 @@ export default async function HomePage() {
       <VideoPlayer data={homepageData.videoSection} />
       <InsightsSection data={homepageData.insightsSection} />
 
-      <div style={{ width: "87%", margin: "0 auto" }}>
+      <div className="home-page-blog-grid">
         <Suspense fallback={<div>Loading featured posts...</div>}>
           <BlogGrid posts={featuredPosts} />
         </Suspense>
